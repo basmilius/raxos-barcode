@@ -4,6 +4,6 @@
 
 ---
 
-# Raxos Cache
+# Raxos Barcode
 
-Repository for cache clients and utilities of [Raxos](https://github.com/basmilius/raxos).
+Repository for barcode implementations for [Raxos](https://github.com/basmilius/raxos).
