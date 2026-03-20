@@ -122,7 +122,7 @@ final readonly class SVGRenderer extends Renderer
             }
         }
 
-        return implode($paths);
+        return implode("\n", $paths);
     }
 
 }

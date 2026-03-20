@@ -6,6 +6,7 @@ namespace Raxos\Barcode\Renderer;
 use GdImage;
 use Raxos\Contract\Barcode\BarcodeInterface;
 use Raxos\Foundation\Util\ColorUtil;
+use RuntimeException;
 use function imagecolorallocate;
 use function imagecreatetruecolor;
 use function imagefill;
@@ -40,6 +41,10 @@ abstract readonly class GDRenderer extends Renderer
         $imageHeight = $matrixHeight * $this->scale + $this->margin * 2;
 
         $image = imagecreatetruecolor($imageWidth, $imageHeight);
+
+        if ($image === false) {
+            throw new RuntimeException('Failed to create image.');
+        }
 
         $background = imagecolorallocate($image, ...ColorUtil::hexToRgb($this->backgroundColor));
         $foreground = imagecolorallocate($image, ...ColorUtil::hexToRgb($this->foregroundColor));
