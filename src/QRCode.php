@@ -4,8 +4,7 @@ declare(strict_types=1);
 namespace Raxos\Barcode;
 
 use Raxos\Barcode\Encoder\QRCodeEncoder;
-use Raxos\Barcode\Enum\BarcodeFormat;
-use Raxos\Barcode\Enum\QRCodeErrorCorrectionLevel;
+use Raxos\Barcode\Enum\{BarcodeFormat, QRCodeErrorCorrectionLevel};
 
 /**
  * Class QRCode

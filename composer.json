@@ -31,7 +31,7 @@
     "require": {
         "ext-ctype": "*",
         "ext-gd": "*",
-        "chillerlan/php-qrcode": "^5.0",
+        "chillerlan/php-qrcode": "^6.0",
         "jetbrains/phpstorm-attributes": "^1.2",
         "raxos/contract": "*",
         "raxos/error": "*",

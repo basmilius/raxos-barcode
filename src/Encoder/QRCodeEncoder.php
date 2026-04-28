@@ -64,7 +64,7 @@ final readonly class QRCodeEncoder implements EncoderInterface
         $maskPattern = MaskPattern::getBestPattern($matrix);
         $matrix->setFormatInfo($maskPattern)->mask($maskPattern);
 
-        return $matrix->getMatrix(true);
+        return $matrix->getBooleanMatrix();
     }
 
 }
