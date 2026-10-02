@@ -4,6 +4,8 @@ declare(strict_types=1);
 use Raxos\Barcode\Encoder\PDF417Encoder;
 use Raxos\Error\InvalidArgumentException;
 
+covers(PDF417Encoder::class);
+
 it('encodes different accepted payloads into different matrices', function (): void {
     $encoder = new PDF417Encoder(4, 2);
     $first = $encoder->encode('Passly 1234567890');
@@ -14,6 +16,6 @@ it('encodes different accepted payloads into different matrices', function (): v
 
 it('rejects payloads exceeding the selected dimensions instead of truncating', function (): void {
     $encoder = new PDF417Encoder(4, 2);
-    expect(fn() => $encoder->encode(str_repeat('A', 1_000) . 'X'))->toThrow(InvalidArgumentException::class);
-    expect(fn() => $encoder->encode(str_repeat('A', 1_000) . 'Y'))->toThrow(InvalidArgumentException::class);
+    expect(fn () => $encoder->encode(str_repeat('A', 1_000) . 'X'))->toThrow(InvalidArgumentException::class);
+    expect(fn () => $encoder->encode(str_repeat('A', 1_000) . 'Y'))->toThrow(InvalidArgumentException::class);
 });

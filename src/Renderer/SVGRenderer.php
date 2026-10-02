@@ -46,7 +46,7 @@ final readonly class SVGRenderer extends Renderer
     /**
      * {@inheritdoc}
      * @author Bas Milius <bas@mili.us>
-     * @since 2.1.0
+     * @since 3.2.0
      */
     public function render(BarcodeInterface $barcode): string
     {
@@ -68,7 +68,7 @@ final readonly class SVGRenderer extends Renderer
 
         $svg .= sprintf(
             '<rect width="100%%" height="100%%" fill="%s"/>',
-            $this->backgroundColor
+            htmlspecialchars($this->backgroundColor, ENT_QUOTES | ENT_XML1, 'UTF-8')
         );
 
         $svg .= $this->generatePaths($matrix);
@@ -84,7 +84,7 @@ final readonly class SVGRenderer extends Renderer
      *
      * @return string
      * @author Bas Milius <bas@mili.us>
-     * @since 2.1.0
+     * @since 3.2.0
      */
     private function generatePaths(array $matrix): string
     {
@@ -112,7 +112,7 @@ final readonly class SVGRenderer extends Renderer
                         $rectY,
                         $rectWidth,
                         $rectHeight,
-                        $this->foregroundColor
+                        htmlspecialchars($this->foregroundColor, ENT_QUOTES | ENT_XML1, 'UTF-8')
                     );
 
                     $x += $width;

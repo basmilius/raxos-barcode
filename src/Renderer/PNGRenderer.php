@@ -5,9 +5,11 @@ namespace Raxos\Barcode\Renderer;
 
 use Raxos\Contract\Barcode\BarcodeInterface;
 use RuntimeException;
+use Throwable;
 use function imagepng;
 use function ob_get_clean;
 use function ob_start;
+
 
 /**
  * Class PNGRenderer
@@ -47,13 +49,18 @@ final readonly class PNGRenderer extends GDRenderer
     /**
      * {@inheritdoc}
      * @author Bas Milius <bas@mili.us>
-     * @since 2.1.0
+     * @since 3.2.0
      */
     public function render(BarcodeInterface $barcode): string
     {
         ob_start();
-        imagepng($this->createImage($barcode));
-        $result = ob_get_clean();
+        try {
+            imagepng($this->createImage($barcode));
+            $result = ob_get_clean();
+        } catch (Throwable $err) {
+            ob_end_clean();
+            throw $err;
+        }
 
         if ($result === false) {
             throw new RuntimeException('Failed to capture PNG output.');
