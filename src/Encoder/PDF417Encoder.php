@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Raxos\Barcode\Encoder;
 
 use Raxos\Contract\Barcode\EncoderInterface;
+use Raxos\Error\InvalidArgumentException;
 use function array_fill;
 use function array_merge;
 use function ceil;
@@ -468,7 +469,15 @@ final readonly class PDF417Encoder implements EncoderInterface
 
         $totalCodewords = $dataCodewordCount + $ecCount;
         $rows = (int)ceil($totalCodewords / $columns);
-        $rows = max(3, min(90, $rows));
+        if ($rows > 90 || $totalCodewords > 928) {
+            throw new InvalidArgumentException('Data exceeds the PDF417 capacity for the selected columns and security level.');
+        }
+
+        $rows = max(3, $rows);
+
+        if ($rows * $columns > 928) {
+            throw new InvalidArgumentException('PDF417 dimensions exceed 928 codewords.');
+        }
 
         $totalCodewords = $rows * $columns;
         $paddingNeeded = $totalCodewords - $dataCodewordCount - $ecCount;
