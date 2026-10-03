@@ -5,7 +5,7 @@ use Raxos\Barcode\Enum\QRCodeErrorCorrectionLevel;
 use Raxos\Barcode\QRCode;
 
 it('renders valid PNG and SVG at every QR correction level', function (QRCodeErrorCorrectionLevel $level): void {
-    $qr = new QRCode('https://passly.example/é😀', $level);
+    $qr = new QRCode('https://example.test/é😀', $level);
     $png = $qr->renderPng(scale: 2, margin: 4);
     $image = imagecreatefromstring($png);
     expect($image)->toBeInstanceOf(GdImage::class)

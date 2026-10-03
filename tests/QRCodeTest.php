@@ -13,4 +13,4 @@ it('produces readable PNG codes for numeric, text and Unicode payloads at each c
     expect((string)$decoded)->toBe($payload)->and($barcode->format)->toBe(BarcodeFormat::QR)
         ->and($barcode->data)->toBe($payload)->and($barcode->width)->toBe($barcode->height)
         ->and($barcode->errorCorrectionLevel)->toBe($level);
-})->with(['0', '123456789012345', 'HELLO WORLD', 'Passly é😀'])->with(QRCodeErrorCorrectionLevel::cases());
+})->with(['0', '123456789012345', 'HELLO WORLD', 'Raxos é😀'])->with(QRCodeErrorCorrectionLevel::cases());

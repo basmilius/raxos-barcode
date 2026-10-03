@@ -8,8 +8,8 @@ covers(PDF417Encoder::class);
 
 it('encodes different accepted payloads into different matrices', function (): void {
     $encoder = new PDF417Encoder(4, 2);
-    $first = $encoder->encode('Passly 1234567890');
-    expect($first)->not->toBe($encoder->encode('Passly 1234567891'));
+    $first = $encoder->encode('Raxos 1234567890');
+    expect($first)->not->toBe($encoder->encode('Raxos 1234567891'));
     expect(count($first))->toBeGreaterThanOrEqual(3);
     expect(count($first))->toBeLessThanOrEqual(90);
 });
