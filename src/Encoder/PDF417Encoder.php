@@ -453,6 +453,7 @@ final readonly class PDF417Encoder implements EncoderInterface
 
     /**
      * {@inheritdoc}
+     *
      * @author Bas Milius <bas@mili.us>
      * @since 2.1.0
      */
@@ -930,4 +931,5 @@ final readonly class PDF417Encoder implements EncoderInterface
             $rowData[] = (bool)(($pattern >> $i) & 1);
         }
     }
+
 }

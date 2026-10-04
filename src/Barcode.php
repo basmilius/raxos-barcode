@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Raxos\Barcode;
 
 use Raxos\Barcode\Enum\BarcodeFormat;
+use Raxos\Barcode\Renderer\{PNGRenderer, SVGRenderer};
 use Raxos\Contract\Barcode\{BarcodeInterface, EncoderInterface};
 use function count;
 
@@ -45,6 +46,7 @@ abstract readonly class Barcode implements BarcodeInterface
 
     /**
      * {@inheritdoc}
+     *
      * @author Bas Milius <bas@mili.us>
      * @since 2.1.0
      */
@@ -55,7 +57,7 @@ abstract readonly class Barcode implements BarcodeInterface
         string $foregroundColor = '#000000'
     ): string
     {
-        return new Renderer\PNGRenderer(
+        return new PNGRenderer(
             $scale,
             $margin,
             $backgroundColor,
@@ -65,6 +67,7 @@ abstract readonly class Barcode implements BarcodeInterface
 
     /**
      * {@inheritdoc}
+     *
      * @author Bas Milius <bas@mili.us>
      * @since 2.1.0
      */
@@ -75,7 +78,7 @@ abstract readonly class Barcode implements BarcodeInterface
         string $foregroundColor = '#000000'
     ): string
     {
-        return new Renderer\SVGRenderer(
+        return new SVGRenderer(
             $scale,
             $margin,
             $backgroundColor,

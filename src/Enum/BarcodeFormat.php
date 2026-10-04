@@ -12,10 +12,12 @@ namespace Raxos\Barcode\Enum;
  */
 enum BarcodeFormat: string
 {
+
 //    case AZTEC = 'aztec';
 //    case CODE128 = 'code128';
 //    case DATAMATRIX = 'datamatrix';
 //    case EAN13 = 'ean13';
     case PDF417 = 'pdf417';
     case QR = 'qr';
+
 }

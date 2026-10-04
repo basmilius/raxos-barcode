@@ -12,8 +12,10 @@ namespace Raxos\Barcode\Enum;
  */
 enum QRCodeErrorCorrectionLevel: int
 {
+
     case L = 0;
     case M = 1;
     case Q = 2;
     case H = 3;
+
 }

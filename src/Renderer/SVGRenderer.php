@@ -17,6 +17,7 @@ use function sprintf;
  */
 final readonly class SVGRenderer extends Renderer
 {
+
     /**
      * Advertises the renderer's output media type to HTTP consumers.
      *
@@ -51,6 +52,7 @@ final readonly class SVGRenderer extends Renderer
 
     /**
      * {@inheritdoc}
+     *
      * @author Bas Milius <bas@mili.us>
      * @since 2.1.0
      */
@@ -130,4 +132,5 @@ final readonly class SVGRenderer extends Renderer
 
         return implode("\n", $paths);
     }
+
 }

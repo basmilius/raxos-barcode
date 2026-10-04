@@ -10,7 +10,6 @@ use function imagepng;
 use function ob_get_clean;
 use function ob_start;
 
-
 /**
  * Class PNGRenderer
  *
@@ -20,6 +19,7 @@ use function ob_start;
  */
 final readonly class PNGRenderer extends GDRenderer
 {
+
     /**
      * Advertises the renderer's output media type to HTTP consumers.
      *
@@ -54,6 +54,7 @@ final readonly class PNGRenderer extends GDRenderer
 
     /**
      * {@inheritdoc}
+     *
      * @author Bas Milius <bas@mili.us>
      * @since 2.1.0
      */
@@ -76,4 +77,5 @@ final readonly class PNGRenderer extends GDRenderer
 
         return $result;
     }
+
 }
