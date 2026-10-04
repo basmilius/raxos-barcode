@@ -21,7 +21,7 @@ it('renders a valid PNG without leaking output into the caller buffer', function
 it('restores the callers output buffer when rendering fails', function (): void {
     $level = ob_get_level();
     try {
-        expect(fn () => new PNGRenderer(1, 0)->render(new MatrixBarcode([])))->toThrow(ValueError::class);
+        expect(fn() => new PNGRenderer(1, 0)->render(new MatrixBarcode([])))->toThrow(ValueError::class);
         expect(ob_get_level())->toBe($level);
     } finally {
         while (ob_get_level() > $level) {

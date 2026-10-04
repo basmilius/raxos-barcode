@@ -8,18 +8,20 @@ use RaxosTests\Barcode\MatrixBarcode;
 covers(GDRenderer::class);
 
 it('fills the quiet zone and paints exactly the occupied module pixels', function (): void {
-    $renderer = new readonly class(2, 1, '#ffffff', '#ff0000') extends GDRenderer
-    {
+    $renderer = new readonly class(2, 1, '#ffffff', '#ff0000') extends GDRenderer {
         public string $mimeType;
+
         public function __construct(int $scale, int $margin, string $background, string $foreground)
         {
             parent::__construct($scale, $margin, $background, $foreground);
             $this->mimeType = 'image/png';
         }
+
         public function render(BarcodeInterface $barcode): string
         {
             return '';
         }
+
         public function image(BarcodeInterface $barcode): GdImage
         {
             return $this->createImage($barcode);

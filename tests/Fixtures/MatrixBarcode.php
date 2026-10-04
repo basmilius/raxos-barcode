@@ -11,11 +11,9 @@ final readonly class MatrixBarcode extends Barcode
 {
     public function __construct(array $matrix)
     {
-        parent::__construct('unit', BarcodeFormat::QR, new readonly class($matrix) implements EncoderInterface
-        {
-            public function __construct(private array $matrix)
-            {
-            }
+        parent::__construct('unit', BarcodeFormat::QR, new readonly class($matrix) implements EncoderInterface {
+            public function __construct(private array $matrix) {}
+
             public function encode(string $data): array
             {
                 return $this->matrix;

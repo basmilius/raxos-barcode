@@ -449,9 +449,7 @@ final readonly class PDF417Encoder implements EncoderInterface
     public function __construct(
         public int $columns,
         public int $securityLevel
-    )
-    {
-    }
+    ) {}
 
     /**
      * {@inheritdoc}
