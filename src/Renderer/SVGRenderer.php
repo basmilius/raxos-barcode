@@ -17,7 +17,13 @@ use function sprintf;
  */
 final readonly class SVGRenderer extends Renderer
 {
-
+    /**
+     * Advertises the renderer's output media type to HTTP consumers.
+     *
+     * @var string
+     * @author Bas Milius <bas@mili.us>
+     * @since 2.1.0
+     */
     public string $mimeType;
 
     /**
@@ -46,7 +52,7 @@ final readonly class SVGRenderer extends Renderer
     /**
      * {@inheritdoc}
      * @author Bas Milius <bas@mili.us>
-     * @since 3.2.0
+     * @since 2.1.0
      */
     public function render(BarcodeInterface $barcode): string
     {
@@ -84,7 +90,7 @@ final readonly class SVGRenderer extends Renderer
      *
      * @return string
      * @author Bas Milius <bas@mili.us>
-     * @since 3.2.0
+     * @since 2.1.0
      */
     private function generatePaths(array $matrix): string
     {
@@ -124,5 +130,4 @@ final readonly class SVGRenderer extends Renderer
 
         return implode("\n", $paths);
     }
-
 }

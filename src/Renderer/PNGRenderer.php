@@ -20,7 +20,13 @@ use function ob_start;
  */
 final readonly class PNGRenderer extends GDRenderer
 {
-
+    /**
+     * Advertises the renderer's output media type to HTTP consumers.
+     *
+     * @var string
+     * @author Bas Milius <bas@mili.us>
+     * @since 2.1.0
+     */
     public string $mimeType;
 
     /**
@@ -49,16 +55,18 @@ final readonly class PNGRenderer extends GDRenderer
     /**
      * {@inheritdoc}
      * @author Bas Milius <bas@mili.us>
-     * @since 3.2.0
+     * @since 2.1.0
      */
     public function render(BarcodeInterface $barcode): string
     {
         ob_start();
+
         try {
             imagepng($this->createImage($barcode));
             $result = ob_get_clean();
         } catch (Throwable $err) {
             ob_end_clean();
+
             throw $err;
         }
 
@@ -68,5 +76,4 @@ final readonly class PNGRenderer extends GDRenderer
 
         return $result;
     }
-
 }

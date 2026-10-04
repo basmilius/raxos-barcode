@@ -449,7 +449,9 @@ final readonly class PDF417Encoder implements EncoderInterface
     public function __construct(
         public int $columns,
         public int $securityLevel
-    ) {}
+    )
+    {
+    }
 
     /**
      * {@inheritdoc}
@@ -469,6 +471,7 @@ final readonly class PDF417Encoder implements EncoderInterface
 
         $totalCodewords = $dataCodewordCount + $ecCount;
         $rows = (int)ceil($totalCodewords / $columns);
+
         if ($rows > 90 || $totalCodewords > 928) {
             throw new InvalidArgumentException('Data exceeds the PDF417 capacity for the selected columns and security level.');
         }
@@ -525,11 +528,13 @@ final readonly class PDF417Encoder implements EncoderInterface
 
             if ($ord < 32 && $ord !== 9 && $ord !== 10 && $ord !== 13) {
                 $useByte = true;
+
                 break;
             }
 
             if ($ord > 126) {
                 $useByte = true;
+
                 break;
             }
         }
@@ -567,6 +572,7 @@ final readonly class PDF417Encoder implements EncoderInterface
                         $charBuffer[] = self::TEXT_ALPHA[$char];
                         $encoded = true;
                     }
+
                     break;
 
                 case self::SUBMODE_LOWER:
@@ -574,6 +580,7 @@ final readonly class PDF417Encoder implements EncoderInterface
                         $charBuffer[] = self::TEXT_LOWER[$char];
                         $encoded = true;
                     }
+
                     break;
 
                 case self::SUBMODE_MIXED:
@@ -581,6 +588,7 @@ final readonly class PDF417Encoder implements EncoderInterface
                         $charBuffer[] = self::TEXT_MIXED[$char];
                         $encoded = true;
                     }
+
                     break;
 
                 case self::SUBMODE_PUNCT:
@@ -588,6 +596,7 @@ final readonly class PDF417Encoder implements EncoderInterface
                         $charBuffer[] = self::TEXT_PUNCT[$char];
                         $encoded = true;
                     }
+
                     break;
             }
 
@@ -742,7 +751,10 @@ final readonly class PDF417Encoder implements EncoderInterface
      * @author Bas Milius <bas@mili.us>
      * @since 2.1.0
      */
-    private function generateErrorCorrection(array $codewords, int $level): array
+    private function generateErrorCorrection(
+        array $codewords,
+        int $level
+    ): array
     {
         $ecCount = self::EC_CODEWORDS[$level];
         $coefficients = self::RS_COEFFICIENTS[$level];
@@ -781,7 +793,12 @@ final readonly class PDF417Encoder implements EncoderInterface
      * @author Bas Milius <bas@mili.us>
      * @since 2.1.0
      */
-    private function renderBarcode(array $codewords, int $columns, int $rows, int $securityLevel): array
+    private function renderBarcode(
+        array $codewords,
+        int $columns,
+        int $rows,
+        int $securityLevel
+    ): array
     {
         $matrix = [];
 
@@ -823,7 +840,12 @@ final readonly class PDF417Encoder implements EncoderInterface
      * @author Bas Milius <bas@mili.us>
      * @since 2.1.0
      */
-    private function getRowIndicatorLeft(int $row, int $totalRows, int $columns, int $securityLevel): int
+    private function getRowIndicatorLeft(
+        int $row,
+        int $totalRows,
+        int $columns,
+        int $securityLevel
+    ): int
     {
         $cluster = $row % 3;
 
@@ -846,7 +868,12 @@ final readonly class PDF417Encoder implements EncoderInterface
      * @author Bas Milius <bas@mili.us>
      * @since 2.1.0
      */
-    private function getRowIndicatorRight(int $row, int $totalRows, int $columns, int $securityLevel): int
+    private function getRowIndicatorRight(
+        int $row,
+        int $totalRows,
+        int $columns,
+        int $securityLevel
+    ): int
     {
         $cluster = $row % 3;
 
@@ -867,7 +894,11 @@ final readonly class PDF417Encoder implements EncoderInterface
      * @author Bas Milius <bas@mili.us>
      * @since 2.1.0
      */
-    private function appendCodewordPattern(array &$rowData, int $codeword, int $cluster): void
+    private function appendCodewordPattern(
+        array &$rowData,
+        int $codeword,
+        int $cluster
+    ): void
     {
         $patterns = match ($cluster) {
             0 => self::CLUSTER_0,
@@ -891,11 +922,14 @@ final readonly class PDF417Encoder implements EncoderInterface
      * @author Bas Milius <bas@mili.us>
      * @since 2.1.0
      */
-    private function appendPattern(array &$rowData, int $pattern, int $bits): void
+    private function appendPattern(
+        array &$rowData,
+        int $pattern,
+        int $bits
+    ): void
     {
         for ($i = $bits - 1; $i >= 0; $i--) {
             $rowData[] = (bool)(($pattern >> $i) & 1);
         }
     }
-
 }

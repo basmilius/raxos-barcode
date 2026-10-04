@@ -19,7 +19,7 @@ Generate QR codes and PDF417 barcodes, then render them as PNG bytes or SVG docu
 Requires PHP 8.5 or later. Enable the `ctype`, `gd` PHP extensions. Composer checks the remaining package and extension dependencies declared in [composer.json](composer.json).
 
 ```sh
-composer require "raxos/barcode:^3.2"
+composer require "raxos/barcode:^3.3"
 ```
 
 ## Usage
